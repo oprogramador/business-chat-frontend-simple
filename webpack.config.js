@@ -19,10 +19,22 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'src')
-    }]
-  }
+    loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loaders: ['react-hot', 'babel'],
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+    ]
+  },
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'mock',
+    tls: false,
+  },
 };
