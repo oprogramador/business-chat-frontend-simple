@@ -1,4 +1,4 @@
-import { Message, Room, User } from 'business-chat-model';
+import { Message, User } from 'business-chat-model';
 import React, { Component } from 'react';
 import FormData from 'react-form-data';
 import reactMixin from 'react-mixin';
@@ -14,15 +14,19 @@ export default class ChatForm extends Component {
   onSubmit(event) {
     event.preventDefault();
     const user = serializer.create(new User({ username: 'foo' }));
-    const room = serializer.create(new Room({ name: 'bar' }));
-    const message = serializer.create(new Message({
-      room,
-      sender: user,
-      text: this.formData.message,
-    }));
-    this.lastMessage = message.getSerializedCurrentData();
-    this.forceUpdate();
-    message.save();
+    const defaultRoom = serializer.create({ id: 'default-room' });
+
+    return defaultRoom.reload()
+      .then(() => defaultRoom.getMessages().reload())
+      .then(() => {
+        const message = serializer.create(new Message({
+          room: defaultRoom,
+          sender: user,
+          text: this.formData.message,
+        }));
+
+        return message.save();
+      });
   }
 
   render() {

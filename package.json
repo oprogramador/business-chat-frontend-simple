@@ -41,8 +41,8 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
-    "business-chat-model": "^1.2.0",
-    "js-abstract-synchronizer": "^2.1.4",
+    "business-chat-model": "^1.6.0",
+    "js-abstract-synchronizer": "^2.1.5",
     "json-loader": "^0.5.4",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",

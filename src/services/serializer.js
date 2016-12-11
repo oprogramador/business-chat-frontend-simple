@@ -13,6 +13,7 @@ const serializer = SerializerFactory.create({
     url: config.backend.url,
   },
   prototypes: {
+    Array: Array.prototype,
     Message: Message.prototype,
     Room: Room.prototype,
     Team: Team.prototype,
