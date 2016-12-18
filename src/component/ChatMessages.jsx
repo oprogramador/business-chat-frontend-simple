@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import serializer from '../services/serializer';
 
+const interval = 200;
+
 export default class ChatMessages extends Component {
-  getData() {
+  constructor(props) {
+    super(props);
+    this.updateData = this.updateData.bind(this);
+
+    setInterval(this.updateData, interval);
+  }
+
+  updateData() {
     const defaultRoom = serializer.create({ id: 'default-room' });
 
     return defaultRoom.reload()
@@ -16,8 +25,6 @@ export default class ChatMessages extends Component {
   }
 
   render() {
-    this.getData();
-
     return (
       <div>
         <div>Messages</div>
