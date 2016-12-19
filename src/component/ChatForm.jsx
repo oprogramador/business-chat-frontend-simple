@@ -19,13 +19,16 @@ export default class ChatForm extends Component {
     return defaultRoom.reload()
       .then(() => defaultRoom.getMessages().reload())
       .then(() => {
-        serializer.create(new Message({
+        const message = serializer.create(new Message({
           room: defaultRoom,
           sender: user,
           text: this.formData.message,
         }));
 
-        return defaultRoom.save();
+        defaultRoom.getMessages().set(defaultRoom.getMessages().size() - 1, { id: message.getId() });
+
+        return defaultRoom.getMessages().saveWithoutReferences()
+          .then(() => message.saveWithoutReferences());
       });
   }
 

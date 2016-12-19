@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "business-chat-model": "^1.6.0",
-    "js-abstract-synchronizer": "^2.1.8",
+    "js-abstract-synchronizer": "^2.3.1",
     "json-loader": "^0.5.4",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
